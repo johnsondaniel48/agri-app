@@ -5,7 +5,7 @@ function NavBar(props) {
         <div className="navbar">
                <div className="logo">
                     <h1>
-                        <i className="fas fa-glass-cheers"/>
+                        <i className="fas fa-leaf"/>
                             Agri needs
                     </h1>
                 <p>Made by John</p>
