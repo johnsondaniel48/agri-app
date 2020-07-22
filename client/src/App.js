@@ -1,16 +1,19 @@
-import React,{useState} from 'react';
+import React from 'react';
 import './App.css';
 import NavBar from './components/layouts/NavBar';
 import Home from './components/Pages/Home';
+import RequestorState from './context/requestorContext/RequestorState';
 
 function App() {
   
 
   return (
-    <div className="App">
+  <RequestorState>
+    <div>
       <NavBar/>
       <Home/>
     </div>
+  </RequestorState>
   );
 }
 
