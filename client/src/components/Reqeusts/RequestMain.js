@@ -2,25 +2,29 @@ import React,{useContext} from 'react';
 import RequestorContext from '../../context/requestorContext/RequestorContext';
 function RequestMain(props) {
     const {requestors}=useContext(RequestorContext);
-    const totalCount=requestors.length;
     return (
         <div>
+            <h3>Farmer Details</h3>
             <table>
+            <thead>
                 <tr>
-                    <th>Requesters</th>
-                    {/* <th>Plant Name</th>
-                    <th>Quantity</th> */}
+                        <th>Name</th>                    
+                        <th>Phone</th>
+                        <th>Address</th>
+                   
                 </tr>
-                <tr>
-                    <td>{totalCount}</td>
-                    {/* <td>Plantain(no.)</td>
-                    <td>10</td> */}
-                </tr>
-                {/* <tr>
-                    <td>Jisha</td>
-                    <td>Ginger(kg)</td>
-                    <td>10</td>
-                </tr> */}
+                </thead>
+                <tbody>
+                { 
+                    requestors.map(item=>
+                        <tr key={item.id}>
+                            <td>{item.requesterName}</td>
+                            <td>{item.requesterPhone}</td>
+                            <td>{item.requesterAddress}</td>
+                        </tr>
+                    )
+                }
+                </tbody>
             </table>
         </div>
     );

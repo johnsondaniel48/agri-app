@@ -1,11 +1,11 @@
-import React from 'react';
+import {TOGGLE_FILTER} from '../Types';
 
-function RequestorReducer(props) {
-    return (
-        <div>
-            sacdasfcd
-        </div>
-    );
+export default (state,{type,payload})=>{
+    switch(type){
+        case TOGGLE_FILTER:
+            return {...state, 
+                    filterRequestors:!state.filterRequestors
+                };
+        default : return state;
+    }
 }
-
-export default RequestorReducer;
