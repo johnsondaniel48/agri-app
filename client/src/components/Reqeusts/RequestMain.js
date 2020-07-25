@@ -18,9 +18,9 @@ function RequestMain(props) {
                 { 
                     requestors.map(item=>
                         <tr key={item.id}>
-                            <td>{item.requesterName}</td>
-                            <td>{item.requesterPhone}</td>
-                            <td>{item.requesterAddress}</td>
+                            <td>{item.requestorName}</td>
+                            <td>{item.requestorPhone}</td>
+                            <td>{item.requestorAddress}</td>
                         </tr>
                     )
                 }

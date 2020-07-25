@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Request({requestor}) {
-    const {requesterName,requesterPhone,requesterAddress}=requestor;
+    const {requestorName,requestorPhone,requestorAddress}=requestor;
     return (
         <div className="guest-card">
             <div className="card-head">
@@ -23,12 +23,12 @@ function Request({requestor}) {
 
             </div>
             <div className="card-body">
-              <h2>{requesterName}</h2>
+              <h2>{requestorName}</h2>
               <span className="badge red">Planter</span>
               <div className="contact">
                   <i className="fas fa-phone-alt"></i>
-                  <p>{requesterPhone}</p>
-                  <p>{requesterAddress}</p>
+                  <p>{requestorPhone}</p>
+                  <p>{requestorAddress}</p>
               </div>
             </div>
         </div>

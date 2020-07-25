@@ -1,1 +1,3 @@
 export const TOGGLE_FILTER= 'TOGGLE_FILTER';
+export const SEARCH_REQUESTOR= 'SEARCH_FILTER';
+export const CLEAR_SEARCH="CLEAR_SEARCH";

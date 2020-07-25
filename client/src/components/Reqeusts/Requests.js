@@ -3,10 +3,12 @@ import RequestorContext from '../../context/requestorContext/RequestorContext';
 import Request from './Request';
 
 function Requests(props) {
-    const {requestors, filterRequestors}= useContext(RequestorContext);
+    const {requestors, filterRequestors,searchResults}= useContext(RequestorContext);
     return (
         <div className="guests">
-            {requestors.filter(requestor=>filterRequestors||requestor.isEligibleforGrant).map(requestor=><Request key={requestor.id} requestor={requestor}/>)}
+        { searchResults!== null ? searchResults.map(requestor=><Request key={requestor.id} requestor={requestor}/>):
+            requestors.filter(requestor=>filterRequestors||requestor.isEligibleforGrant).map(requestor=><Request key={requestor.id} requestor={requestor}/>)
+        }
         </div>
     );
 }
