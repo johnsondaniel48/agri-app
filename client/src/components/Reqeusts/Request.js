@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import RequestorContext from '../../context/requestorContext/RequestorContext';
 
 function Request({requestor}) {
-    const {requestorName,requestorPhone,requestorAddress}=requestor;
+ 
+    const {id,requestorName,requestorPhone,requestorAddress}=requestor;
+    const {removeRequestor}=useContext(RequestorContext);
+    const handleRemove=()=>{
+        removeRequestor(id);
+    }
     return (
         <div className="guest-card">
             <div className="card-head">
@@ -17,7 +23,7 @@ function Request({requestor}) {
                       <i className="fas fa-user-edit"></i>
                   </button>
                   <button>
-                      <i className="fas fa-trash-alt remove"></i>
+                      <i className="fas fa-trash-alt remove" onClick={handleRemove} ></i>
                   </button>
               </div>
 

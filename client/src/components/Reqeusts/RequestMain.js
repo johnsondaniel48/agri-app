@@ -14,7 +14,7 @@ function RequestMain(props) {
                    
                 </tr>
                 </thead>
-                <tbody>
+                <tbody> 
                 { 
                     requestors.map(item=>
                         <tr key={item.id}>

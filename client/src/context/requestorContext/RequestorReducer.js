@@ -1,7 +1,21 @@
-import {TOGGLE_FILTER, SEARCH_REQUESTOR , CLEAR_SEARCH} from '../Types';
+import {
+          TOGGLE_FILTER
+        , SEARCH_REQUESTOR
+        , CLEAR_SEARCH
+        , ADD_REQUESTORS
+        , REMOVE_REQUESTORS
+        } from '../Types';
 
+//state: Returing state
+//type : input   
+//payload : input         
 export default (state,{type,payload})=>{
     switch(type){
+        case REMOVE_REQUESTORS:
+            return {...state,requestors:state.requestors.filter(requestor=>requestor.id!==payload)}
+        case ADD_REQUESTORS:
+            return {...state,
+            requestors:[...state.requestors,payload]}
         case CLEAR_SEARCH:
             return {...state, 
                 searchResults:null

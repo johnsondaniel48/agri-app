@@ -1,7 +1,13 @@
 import React,{useReducer} from 'react';
 import ReqeustorContext from './RequestorContext';
 import RequestorReducer from './RequestorReducer';
-import {TOGGLE_FILTER, SEARCH_REQUESTOR, CLEAR_SEARCH} from '../Types';
+import {
+        TOGGLE_FILTER
+      , SEARCH_REQUESTOR
+      , CLEAR_SEARCH
+      , ADD_REQUESTORS
+      , REMOVE_REQUESTORS
+      } from '../Types';
 
 function RequestorState(props) {
     const initialState={
@@ -41,9 +47,26 @@ function RequestorState(props) {
             isEligibleforGrant:true
         }
     ]
-    };
-    const [state,dispatch]= useReducer(RequestorReducer,initialState);
-   
+  };
+  
+  const [state,dispatch]= useReducer(RequestorReducer,initialState);
+ 
+  const removeRequestor=(id)=>{
+    dispatch({
+        type:REMOVE_REQUESTORS,
+        payload:id
+    })
+  }
+
+   const addRequestors = (requestor)=>{
+    requestor.id=Date.now();
+    requestor.isEligibleforGrant=true;
+    dispatch({
+        type:ADD_REQUESTORS,
+        payload:requestor
+    })
+   }
+
     const toggleRequestorFilter = () => {
         dispatch({
           type: TOGGLE_FILTER
@@ -71,7 +94,9 @@ function RequestorState(props) {
         searchResults:state.searchResults,
         toggleRequestorFilter,
         searchRequestor,
-        clearSearch
+        clearSearch,
+        addRequestors,
+        removeRequestor
     }}>
         {props.children}
     </ReqeustorContext.Provider>
