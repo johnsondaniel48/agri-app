@@ -1,4 +1,4 @@
-import React,{useState, useContext} from 'react';
+import React,{useState, useContext,useEffect} from 'react';
 import RequestorContext from '../../context/requestorContext/RequestorContext';
 
 function RequestForm(props) {
@@ -10,8 +10,21 @@ function RequestForm(props) {
                                                 requestorPhone:'',
                                                 requestorAddress:''
                                               });
-    
-  const {addRequestors}=useContext(RequestorContext);                                            
+ const {addRequestors,editAble,updateRequestor,clearEdit}=useContext(RequestorContext);            
+ useEffect(()=>{
+    if(editAble!==null){
+      setRequestor(editAble);
+    }else{
+      setRequestor({
+        plantName:'',
+        quantity:'',
+        requestorName:'',
+        requestorPhone:'',
+        requestorAddress:''
+      });
+    }
+},[editAble])
+                                 
   const {plantName,quantity,requestorName,requestorPhone,requestorAddress}=requestor;
 
   const handleChange=e=>{
@@ -20,18 +33,25 @@ function RequestForm(props) {
         [e.target.name]:e.target.value
       })
   }
+  if( editAble!==null){
+    console.log(editAble);
+  } 
 
   const handleSubmit=e=>{
     e.preventDefault();
-    console.log(requestor);
-    addRequestors(requestor);
-    setRequestor({
-      plantName:'',
-      quantity:'',
-      requestorName:'',
-      requestorPhone:'',
-      requestorAddress:''
-    });
+    if(editAble!==null){
+      updateRequestor(requestor);
+      clearEdit();
+    }else{
+      addRequestors(requestor);
+      setRequestor({
+        plantName:'',
+        quantity:'',
+        requestorName:'',
+        requestorPhone:'',
+        requestorAddress:''
+      });
+    }
   }
 
   return (

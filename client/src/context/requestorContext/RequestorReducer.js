@@ -4,6 +4,9 @@ import {
         , CLEAR_SEARCH
         , ADD_REQUESTORS
         , REMOVE_REQUESTORS
+        , UPDATE_REQUESTORS
+        , EDIT_REQUESTOR
+        , CLEAR_EDIT
         } from '../Types';
 
 //state: Returing state
@@ -11,6 +14,20 @@ import {
 //payload : input         
 export default (state,{type,payload})=>{
     switch(type){
+
+        case CLEAR_EDIT:
+            return{
+                ...state
+                ,editAble:null
+            }
+        case EDIT_REQUESTOR:
+            return {
+                ...state
+                ,editAble:payload
+              }
+        case UPDATE_REQUESTORS:
+            return {...state,requestors:state.requestors.map(requestor=>requestor.id==payload.id?payload:requestor)};
+
         case REMOVE_REQUESTORS:
             return {...state,requestors:state.requestors.filter(requestor=>requestor.id!==payload)}
         case ADD_REQUESTORS:

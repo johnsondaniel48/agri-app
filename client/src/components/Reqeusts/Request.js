@@ -3,23 +3,26 @@ import RequestorContext from '../../context/requestorContext/RequestorContext';
 
 function Request({requestor}) {
  
-    const {id,requestorName,requestorPhone,requestorAddress}=requestor;
-    const {removeRequestor}=useContext(RequestorContext);
+    const {id,requestorName,requestorPhone,requestorAddress,isEligibleforGrant}=requestor;
+    const {removeRequestor,updateRequestor,editRequestor}=useContext(RequestorContext);
     const handleRemove=()=>{
         removeRequestor(id);
+    }
+    const handleIsEligibleforGrant=(requestor)=>{
+        updateRequestor({...requestor,isEligibleforGrant:!isEligibleforGrant})
     }
     return (
         <div className="guest-card">
             <div className="card-head">
               <div>
-                  <label>Requests
-                  <i className="fas fa-check-square">
-                      <input type="checkbox"/>
-                  </i>
+                  <label className={`${isEligibleforGrant && 'confrim'}`} > grant awarded 
+                    <i className={`fas fa-check-square ${isEligibleforGrant && 'confrim'}`}>
+                        <input type="checkbox" onChange={handleIsEligibleforGrant}/>
+                    </i>
                   </label>
               </div>
               <div>
-                  <button>
+                  <button onClick={()=>editRequestor(requestor)}>
                       <i className="fas fa-user-edit"></i>
                   </button>
                   <button>
