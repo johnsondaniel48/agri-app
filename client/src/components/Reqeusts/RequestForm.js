@@ -64,6 +64,7 @@ function RequestForm(props) {
                 <input type="text" value={requestorPhone} onChange={handleChange} name="requestorPhone" placeholder="requestor Phone" />
                 <input type="text" value={requestorAddress} onChange={handleChange} name="requestorAddress" placeholder="requestor Address"/>
                 <input type="submit" value={editAble!==null?"Edit":"Add Request"} className="btn" />
+                { editAble!==null? <input type="button" value="Cancel" onClick={clearEdit} className="btn clear" />:null }
         </form>
     </div>
     );
