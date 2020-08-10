@@ -1,6 +1,6 @@
 const mongoose= require('mongoose');
 const requestorSchema=new mongoose.Schema({
-    User:{
+    user:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'users'
     },

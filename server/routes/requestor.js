@@ -32,6 +32,7 @@ router.post('/',auth,
     }
     const {plantName,quantity,requestorName,requestorPhone,requestorType,isEligibleforGrant}= req.body;
     try{
+        console.log(req.user.id);
         let requestor= new Requestor({
             user:req.user.id,
             plantName,
@@ -48,6 +49,54 @@ router.post('/',auth,
        console.log(err);
        res.status(500).send('Server Error');
     }
+})
+
+router.delete('/:id',auth,async(req,res)=>{
+    try
+    {
+        let requestor= Requestor.findById(req.params.id);
+        if(!requestor){
+            res.status(404).send({msg:'Requestor is not found'})
+        }
+        await Requestor.findByIdAndRemove(req.params.id);
+        res.send('Requestor removed');
+    }
+    catch(err)
+    {
+        console.log(err);
+
+    }
+})
+
+router.put('/:id',auth,async(req,res)=>{
+    const { plantName,
+        quantity,
+        requestorName,
+        requestorPhone,
+        requestorType,
+        isEligibleforGrant}=req.body;
+
+        const updatedRequestor= { plantName,
+        quantity,
+        requestorName,
+        requestorPhone,
+        requestorType,
+        isEligibleforGrant};
+  console.log(updatedRequestor);
+  console.log(req.params.id);
+        try {
+            
+            let requestor =await Requestor.findById(req.params.id);
+            console.log('find completed');
+            if(!requestor){
+                updatedRequestor = await Requestor.findByIdAndUpdate(req.params.id,  updatedRequestor, {new: true} );
+                console.log('find completed');
+                res.send(updatedRequestor);
+            }
+        } catch (err) {
+            console.error(err)
+            res.status(500).send("Server Error");
+        }
 })
 
 module.exports=router;
