@@ -89,7 +89,7 @@ router.put('/:id',auth,async(req,res)=>{
             let requestor =await Requestor.findById(req.params.id);
             console.log('find completed');
             if(!requestor){
-                updatedRequestor = await Requestor.findByIdAndUpdate(req.params.id,  updatedRequestor, {new: true} );
+                updatedRequestor = await Requestor.findByIdAndUpdate(req.params.id, {$set: updatedRequestor}, {new: true} );
                 console.log('find completed');
                 res.send(updatedRequestor);
             }
