@@ -3,14 +3,18 @@ import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NavBar from './components/layouts/NavBar';
 import Home from './components/Pages/Home';
+import AuthState from "./context/authContext/AuthState";
 import RequestorState from './context/requestorContext/RequestorState';
 import Register from './components/Pages/Register';
 import Login from './components/Pages/Login';
+import AuthContext from './context/authContext/Authcontext';
+
 
 function App() {
   
 
-  return (
+return (
+<AuthContext>
   <RequestorState>
     <Router>
     <div>
@@ -23,6 +27,7 @@ function App() {
     </div>
     </Router>
   </RequestorState>
+  </AuthContext>
   );
 }
 
