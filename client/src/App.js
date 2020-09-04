@@ -3,18 +3,17 @@ import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NavBar from './components/layouts/NavBar';
 import Home from './components/Pages/Home';
-import AuthState from "./context/authContext/AuthState";
 import RequestorState from './context/requestorContext/RequestorState';
 import Register from './components/Pages/Register';
 import Login from './components/Pages/Login';
-import AuthContext from './context/authContext/Authcontext';
+import AuthState from './context/authContext/AuthState';
 
 
-function App() {
+function App() {  
   
 
 return (
-<AuthContext>
+<AuthState>
   <RequestorState>
     <Router>
     <div>
@@ -27,7 +26,7 @@ return (
     </div>
     </Router>
   </RequestorState>
-  </AuthContext>
+  </AuthState>
   );
 }
 

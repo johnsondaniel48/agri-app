@@ -1,7 +1,9 @@
-import React, {useState, useImperativeHandle} from 'react';
+import React, {useState,useContext,useImperativeHandle} from 'react';
 import {Link} from 'react-router-dom'
+import AuthContext from '../../context/authContext/AuthContext'
 
 function Login(props) {
+    const {loginUser,userAuth,errors}= useContext(AuthContext);
     const [user,setUser]= useState({email:'',password:''});
     const {email, password}= user;
     const handleChange=e=>{
@@ -9,7 +11,7 @@ function Login(props) {
     }    
     const handleSubmit=e=>{
         e.preventDefault();
-        console.log({email,password});
+        loginUser({email,password});
     }
 
     return (
