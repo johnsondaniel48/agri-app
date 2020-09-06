@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import AuthContext from '../../context/authContext/AuthContext'
 
 function Login(props) {
-    const {loginUser,userAuth,errors}= useContext(AuthContext);
+    const {loginUsers,userAuth,errors}= useContext(AuthContext);
     const [user,setUser]= useState({email:'',password:''});
     const {email, password}= user;
     const handleChange=e=>{
@@ -11,7 +11,7 @@ function Login(props) {
     }    
     const handleSubmit=e=>{
         e.preventDefault();
-        loginUser({email,password});
+        loginUsers({email,password});
     }
 
     return (

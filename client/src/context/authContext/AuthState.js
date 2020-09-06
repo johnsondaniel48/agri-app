@@ -14,33 +14,57 @@ function AuthState(props) {
                         userAuth:null
                         ,errors:null
                         };
-    const {state,dispatch}= useReducer(authReducer,initailState);
+    const [state,dispatch]= useReducer(authReducer,initailState);
 
     const registerUsers= async userData=>{
-        const config={
-            headers:{
-                "Content-Type":"application/json"
-            }
-        }
-        try {
-            const res= axios.post("/register",userData,config);
-            dispatch({
-                type: SUCCESS_REGISTER, 
-                payload: res.data
-            })        
-        } catch (error) {
-            dispatch({
-                type: FAIL_REGISTER,
-                payload:error.response.data
-            })
-            console.log(error)
-        }
+        // const config={
+        //     method: 'POST',
+        //     headers:{
+        //         'Accept': 'application/json',
+        //         "Content-Type":"application/json",
+        //         "Access-Control-Allow-Origin":"http://127.0.0.1:3000",
+        //         "Access-Control-Allow-Headers": "Content-Type"
+        //     }
+        // }
+        // try {
+        //     const res= axios.post("/register",userData,config);
+        //     dispatch({
+        //         type: SUCCESS_REGISTER, 
+        //         payload: res.data
+        //     })        
+        // } catch (error) {
+        //     dispatch({
+        //         type: FAIL_REGISTER,
+        //         payload:error.response.data
+        //     })
+        //     console.log(error)
+        // }
+
+        fetch("/register", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+    
+        .then((response) => response.json())
+            .then((responseData) => {
+             dispatch({
+              type: SUCCESS_REGISTER, 
+              payload: responseData
+             })     
+        })
     }
 
     const loginUsers= async userData=>{
         const config={
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                "Access-Control-Allow-Origin":"http://127.0.0.1:3000",
+                "Access-Control-Allow-Methods": "POST",
+                "Access-Control-Allow-Headers": "Content-Type"
             }
         }
         try {
